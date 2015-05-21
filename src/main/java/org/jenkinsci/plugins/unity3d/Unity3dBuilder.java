@@ -108,7 +108,7 @@ public class Unity3dBuilder extends Builder {
         StreamCopyThread copierThread = new StreamCopyThread("Pipe editor.log to output thread.", pipe.getIn(), ca);
         try {
             copierThread.start();
-            int r = launcher.launch().cmds(args).envs(env).stdout(ca).pwd(build.getWorkspace()).join();
+            int r = launcher.launch().cmds(args).envs(env).stderr(ca).stdout(ca).pwd(build.getWorkspace()).join();
             // r == 11 means executeMethod could not be found ?
             if (r != 0) {
                 throw new PerformException(Messages.Unity3d_UnityExecFailed(r));
